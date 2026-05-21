@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="menu_ethio_influencer_root"
+        name="Ethio Influencer Pro"
+        sequence="25"
+    />
+
+    <menuitem
+        id="menu_ethio_influencer_marketplace"
+        name="Marketplace"
+        parent="menu_ethio_influencer_root"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_influencer_profile"
+        name="Influencers"
+        parent="menu_ethio_influencer_marketplace"
+        action="action_influencer_profile"
+        sequence="10"
+    />
+
+    <menuitem
+        id="menu_influencer_campaign"
+        name="Campaigns"
+        parent="menu_ethio_influencer_marketplace"
+        action="action_influencer_campaign"
+        sequence="20"
+    />
+
+    <menuitem
+        id="menu_influencer_social_account"
+        name="Social Accounts"
+        parent="menu_ethio_influencer_marketplace"
+        action="action_influencer_social_account"
+        sequence="25"
+    />
+
+    <menuitem
+        id="menu_influencer_notification"
+        name="Notifications"
+        parent="menu_ethio_influencer_marketplace"
+        action="action_influencer_notification"
+        sequence="28"
+    />
+
+    <menuitem
+        id="menu_influencer_message"
+        name="Messages"
+        parent="menu_ethio_influencer_marketplace"
+        action="action_influencer_message"
+        sequence="30"
+    />
+
+    <menuitem
+        id="menu_influencer_contract"
+        name="Contracts"
+        parent="menu_ethio_influencer_marketplace"
+        action="action_influencer_contract"
+        sequence="40"
+    />
+
+    <menuitem
+        id="menu_influencer_payment"
+        name="Payments"
+        parent="menu_ethio_influencer_marketplace"
+        action="action_influencer_payment"
+        sequence="50"
+    />
+
+    <menuitem
+        id="menu_ethio_influencer_configuration"
+        name="Configuration"
+        parent="menu_ethio_influencer_root"
+        sequence="90"
+    />
+
+    <menuitem
+        id="menu_influencer_industry"
+        name="Industries"
+        parent="menu_ethio_influencer_configuration"
+        action="action_influencer_industry"
+        sequence="10"
+    />
+
+</odoo>

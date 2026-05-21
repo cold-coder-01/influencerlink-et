@@ -1,0 +1,44 @@
+# Environment secrets
+.env
+.env.*
+!.env.example
+**/.env.local
+**/.env*.local
+
+# Node / Next.js
+**/node_modules/
+**/.next/
+**/out/
+**/.vercel/
+
+# Logs
+*.log
+**/*.log
+
+# Python
+**/__pycache__/
+**/*.pyc
+.venv/
+venv/
+
+# Android / Capacitor build outputs
+**/android/.gradle/
+**/android/build/
+**/android/app/build/
+**/android/local.properties
+
+# Signing secrets
+*.jks
+*.keystore
+*signing*.properties
+keystore.properties
+
+# Local Git backup
+apps/web/.git-web-backup/
+git-safety-backups/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

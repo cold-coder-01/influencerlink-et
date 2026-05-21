@@ -1,0 +1,11 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="p" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M30 4L56 30L30 56L4 30L30 4Z" stroke="#FFD700" stroke-opacity=".38" stroke-width="1.2"/>
+      <path d="M30 16L44 30L30 44L16 30L30 16Z" stroke="#FFD700" stroke-opacity=".28" stroke-width="1"/>
+      <path d="M30 24L36 30L30 36L24 30L30 24Z" fill="#FFD700" fill-opacity=".2"/>
+      <path d="M0 30H12M48 30H60M30 0V12M30 48V60" stroke="#FFD700" stroke-opacity=".22" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="240" height="240" fill="url(#p)"/>
+</svg>

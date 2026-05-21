@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">InfluencerLink ET</string>
+    <string name="title_activity_main">InfluencerLink ET</string>
+    <string name="package_name">com.influencerlink.et</string>
+    <string name="custom_url_scheme">com.influencerlink.et</string>
+</resources>

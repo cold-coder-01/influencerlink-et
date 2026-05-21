@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="industry_beverage" model="influencer.industry">
+        <field name="name">Beverage</field>
+        <field name="icon">cup</field>
+        <field name="industry_weight">1.20</field>
+    </record>
+
+    <record id="industry_textile" model="influencer.industry">
+        <field name="name">Textile</field>
+        <field name="icon">sparkle</field>
+        <field name="industry_weight">1.35</field>
+    </record>
+
+    <record id="industry_real_estate" model="influencer.industry">
+        <field name="name">Real Estate</field>
+        <field name="icon">building</field>
+        <field name="industry_weight">1.50</field>
+    </record>
+
+    <record id="industry_craft" model="influencer.industry">
+        <field name="name">Craft</field>
+        <field name="icon">palette</field>
+        <field name="industry_weight">1.10</field>
+    </record>
+
+    <record id="industry_agri_tech" model="influencer.industry">
+        <field name="name">Agri-Tech</field>
+        <field name="icon">leaf</field>
+        <field name="industry_weight">1.25</field>
+    </record>
+</odoo>

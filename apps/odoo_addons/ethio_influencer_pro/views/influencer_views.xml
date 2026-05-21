@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_influencer_profile_list" model="ir.ui.view">
+        <field name="name">influencer.profile.list</field>
+        <field name="model">influencer.profile</field>
+        <field name="arch" type="xml">
+            <list string="Influencers">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="platform"/>
+                <field name="handle"/>
+                <field name="follower_count"/>
+                <field name="industry_ids" widget="many2many_tags"/>
+                <field name="avg_views"/>
+                <field name="verified_metrics_at"/>
+                <field name="addis_audience_pct"/>
+                <field name="regional_audience_pct"/>
+                <field name="roi_multiplier"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_influencer_profile_form" model="ir.ui.view">
+        <field name="name">influencer.profile.form</field>
+        <field name="model">influencer.profile</field>
+        <field name="arch" type="xml">
+            <form string="Influencer Profile">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Influencer name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Identity">
+                            <field name="partner_id"/>
+                            <field name="platform"/>
+                            <field name="handle"/>
+                            <field name="industry_ids" widget="many2many_tags"/>
+                        </group>
+                        <group string="Audience">
+                            <field name="follower_count"/>
+                            <field name="total_view_count"/>
+                            <field name="avg_views"/>
+                            <field name="addis_audience_pct"/>
+                            <field name="regional_audience_pct"/>
+                            <field name="roi_multiplier" readonly="1"/>
+                            <field name="verified_metrics_at" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Social Accounts">
+                            <field name="social_account_ids">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="platform"/>
+                                    <field name="handle"/>
+                                    <field name="verification_status"/>
+                                    <field name="followers_count"/>
+                                    <field name="avg_views"/>
+                                    <field name="engagement_rate"/>
+                                    <field name="audience_addis_percent"/>
+                                    <field name="verified_at"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Performance Metrics">
+                            <field
+                                name="performance_metrics"
+                                placeholder='{"conversion_rate": "7.4%", "value_per_birr": "3.2 ETB"}'
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_influencer_profile_search" model="ir.ui.view">
+        <field name="name">influencer.profile.search</field>
+        <field name="model">influencer.profile</field>
+        <field name="arch" type="xml">
+            <search string="Influencers">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="industry_ids"/>
+                <filter
+                    name="high_roi"
+                    string="High ROI"
+                    domain="[('roi_multiplier', '&gt;=', 1.5)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_by_industry"
+                        string="Industry"
+                        context="{'group_by': 'industry_ids'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_influencer_profile" model="ir.actions.act_window">
+        <field name="name">Influencers</field>
+        <field name="res_model">influencer.profile</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

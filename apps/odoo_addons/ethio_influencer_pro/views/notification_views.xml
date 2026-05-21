@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_influencer_notification_tree" model="ir.ui.view">
+        <field name="name">influencer.notification.list</field>
+        <field name="model">influencer.notification</field>
+        <field name="arch" type="xml">
+            <list string="Notifications">
+                <field name="created_at" />
+                <field name="name" />
+                <field name="notification_type" />
+                <field name="recipient_role" />
+                <field name="recipient_partner_id" />
+                <field name="recipient_influencer_id" />
+                <field name="campaign_id" />
+                <field name="contract_id" />
+                <field name="payment_id" />
+                <field name="social_account_id" />
+                <field name="priority" />
+                <field name="is_read" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_influencer_notification_form" model="ir.ui.view">
+        <field name="name">influencer.notification.form</field>
+        <field name="model">influencer.notification</field>
+        <field name="arch" type="xml">
+            <form string="Notification">
+                <sheet>
+                    <group string="Notification">
+                        <field name="name" />
+                        <field name="body" />
+                        <field name="notification_type" />
+                        <field name="priority" />
+                        <field name="action_url" />
+                        <field name="is_read" />
+                        <field name="read_at" />
+                        <field name="created_at" readonly="1" />
+                    </group>
+                    <group string="Recipient">
+                        <field name="recipient_role" />
+                        <field name="recipient_partner_id" />
+                        <field name="recipient_influencer_id" />
+                    </group>
+                    <group string="Related Records">
+                        <field name="campaign_id" />
+                        <field name="message_id" />
+                        <field name="contract_id" />
+                        <field name="payment_id" />
+                        <field name="social_account_id" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_influencer_notification" model="ir.actions.act_window">
+        <field name="name">Notifications</field>
+        <field name="res_model">influencer.notification</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

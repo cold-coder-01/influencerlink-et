@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_influencer_social_account_list" model="ir.ui.view">
+        <field name="name">influencer.social.account.list</field>
+        <field name="model">influencer.social.account</field>
+        <field name="arch" type="xml">
+            <list string="Social Accounts">
+                <field name="name"/>
+                <field name="influencer_id"/>
+                <field name="platform"/>
+                <field name="handle"/>
+                <field name="profile_url"/>
+                <field name="verification_status"/>
+                <field name="verification_method"/>
+                <field name="followers_count"/>
+                <field name="avg_views"/>
+                <field name="engagement_rate"/>
+                <field name="audience_addis_percent"/>
+                <field name="last_synced_at"/>
+                <field name="verified_at"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_influencer_social_account_form" model="ir.ui.view">
+        <field name="name">influencer.social.account.form</field>
+        <field name="model">influencer.social.account</field>
+        <field name="arch" type="xml">
+            <form string="Social Account">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Account name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Account">
+                            <field name="influencer_id"/>
+                            <field name="platform"/>
+                            <field name="handle"/>
+                            <field name="profile_url"/>
+                            <field name="platform_account_id"/>
+                        </group>
+                        <group string="Verification">
+                            <field name="verification_status"/>
+                            <field name="verification_method"/>
+                            <field name="verified_at"/>
+                            <field name="rejection_reason"/>
+                        </group>
+                    </group>
+                    <group string="Metrics">
+                        <group>
+                            <field name="followers_count"/>
+                            <field name="following_count"/>
+                            <field name="media_count"/>
+                            <field name="avg_views"/>
+                            <field name="avg_likes"/>
+                            <field name="avg_comments"/>
+                        </group>
+                        <group>
+                            <field name="engagement_rate"/>
+                            <field name="audience_location"/>
+                            <field name="audience_addis_percent"/>
+                            <field name="last_synced_at"/>
+                        </group>
+                    </group>
+                    <group string="Future API Tokens" groups="base.group_system">
+                        <field name="access_token" password="True"/>
+                        <field name="refresh_token" password="True"/>
+                        <field name="token_expiry"/>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_influencer_social_account_search" model="ir.ui.view">
+        <field name="name">influencer.social.account.search</field>
+        <field name="model">influencer.social.account</field>
+        <field name="arch" type="xml">
+            <search string="Social Accounts">
+                <field name="name"/>
+                <field name="influencer_id"/>
+                <field name="platform"/>
+                <field name="handle"/>
+                <filter
+                    name="verified"
+                    string="Verified"
+                    domain="[('verification_status', '=', 'verified')]"
+                />
+                <filter
+                    name="pending"
+                    string="Pending Review"
+                    domain="[('verification_status', '=', 'pending')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="group_by_status"
+                        string="Verification Status"
+                        context="{'group_by': 'verification_status'}"
+                    />
+                    <filter
+                        name="group_by_platform"
+                        string="Platform"
+                        context="{'group_by': 'platform'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_influencer_social_account" model="ir.actions.act_window">
+        <field name="name">Social Accounts</field>
+        <field name="res_model">influencer.social.account</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

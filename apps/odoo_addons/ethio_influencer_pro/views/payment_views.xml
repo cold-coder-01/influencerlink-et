@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_influencer_payment_tree" model="ir.ui.view">
+        <field name="name">influencer.payment.tree</field>
+        <field name="model">influencer.payment</field>
+        <field name="arch" type="xml">
+            <list string="Payments">
+                <field name="name"/>
+                <field name="campaign_id"/>
+                <field name="contract_id"/>
+                <field name="business_partner_id"/>
+                <field name="influencer_id"/>
+                <field name="payment_status"/>
+                <field name="payment_type"/>
+                <field name="amount"/>
+                <field name="platform_fee"/>
+                <field name="net_amount"/>
+                <field name="payment_method"/>
+                <field name="transaction_reference"/>
+                <field name="due_date"/>
+                <field name="deposited_at"/>
+                <field name="released_at"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_influencer_payment_form" model="ir.ui.view">
+        <field name="name">influencer.payment.form</field>
+        <field name="model">influencer.payment</field>
+        <field name="arch" type="xml">
+            <form string="Payment">
+                <header>
+                    <button name="action_mark_requested" string="Mark Requested" type="object" class="btn-primary"/>
+                    <button name="action_mark_deposited" string="Mark Deposited" type="object" class="btn-primary"/>
+                    <button name="action_mark_released" string="Mark Released" type="object" class="btn-primary"/>
+                    <button name="action_cancel" string="Cancel" type="object"/>
+                    <field name="payment_status" widget="statusbar" statusbar_visible="draft,requested,deposited,released"/>
+                </header>
+                <sheet>
+                    <group string="Payment Basics">
+                        <field name="name"/>
+                        <field name="payment_status"/>
+                        <field name="payment_type"/>
+                        <field name="payment_method"/>
+                    </group>
+                    <group string="Relations">
+                        <field name="campaign_id"/>
+                        <field name="contract_id"/>
+                        <field name="business_partner_id"/>
+                        <field name="influencer_id"/>
+                    </group>
+                    <group string="Amount">
+                        <field name="amount"/>
+                        <field name="currency_id"/>
+                        <field name="platform_fee"/>
+                        <field name="net_amount" readonly="1"/>
+                    </group>
+                    <group string="Transaction">
+                        <field name="transaction_reference"/>
+                        <field name="due_date"/>
+                        <field name="deposited_at"/>
+                        <field name="released_at"/>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_influencer_payment" model="ir.actions.act_window">
+        <field name="name">Payments</field>
+        <field name="res_model">influencer.payment</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_influencer_industry_list" model="ir.ui.view">
+        <field name="name">influencer.industry.list</field>
+        <field name="model">influencer.industry</field>
+        <field name="arch" type="xml">
+            <list string="Industries">
+                <field name="name"/>
+                <field name="icon"/>
+                <field name="industry_weight"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_influencer_industry_form" model="ir.ui.view">
+        <field name="name">influencer.industry.form</field>
+        <field name="model">influencer.industry</field>
+        <field name="arch" type="xml">
+            <form string="Industry">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="icon"/>
+                        <field name="industry_weight"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_influencer_industry_search" model="ir.ui.view">
+        <field name="name">influencer.industry.search</field>
+        <field name="model">influencer.industry</field>
+        <field name="arch" type="xml">
+            <search string="Industries">
+                <field name="name"/>
+                <filter
+                    name="active"
+                    string="Active"
+                    domain="[('active', '=', True)]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="action_influencer_industry" model="ir.actions.act_window">
+        <field name="name">Industries</field>
+        <field name="res_model">influencer.industry</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_active': 1}</field>
+    </record>
+</odoo>

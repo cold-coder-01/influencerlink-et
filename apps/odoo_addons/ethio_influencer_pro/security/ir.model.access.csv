@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_influencer_industry_user,influencer.industry user,model_influencer_industry,base.group_user,1,1,1,1
+access_influencer_profile_user,influencer.profile user,model_influencer_profile,base.group_user,1,1,1,1
+access_influencer_social_account_user,influencer.social.account user,model_influencer_social_account,base.group_user,1,1,1,1
+access_influencer_notification_user,influencer.notification user,model_influencer_notification,base.group_user,1,1,1,1
+access_influencer_campaign_user,influencer.campaign user,model_influencer_campaign,base.group_user,1,1,1,1
+access_influencer_message_user,influencer.message user,model_influencer_message,base.group_user,1,1,1,1
+access_influencer_contract_user,influencer.contract user,model_influencer_contract,base.group_user,1,1,1,1
+access_influencer_payment_user,influencer.payment user,model_influencer_payment,base.group_user,1,1,1,1
