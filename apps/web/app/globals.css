@@ -102,7 +102,7 @@ html {
 }
 
 .mobile-bottom-spacing {
-  padding-bottom: max(10rem, calc(env(safe-area-inset-bottom) + 10rem));
+  padding-bottom: max(11rem, calc(env(safe-area-inset-bottom) + 11rem));
 }
 
 .no-scrollbar {
@@ -114,9 +114,32 @@ html {
   display: none;
 }
 
+.influencer-kpi-fill {
+  animation: influencer-kpi-pulse 3.6s ease-in-out infinite;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.24), transparent 42%);
+  background-size: 180% 100%;
+}
+
 @media (min-width: 1024px) {
   .mobile-bottom-spacing {
     padding-bottom: max(1.5rem, calc(env(safe-area-inset-bottom) + 1rem));
+  }
+}
+
+@keyframes influencer-kpi-pulse {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .influencer-kpi-fill {
+    animation: none;
   }
 }
 

@@ -9,7 +9,7 @@ type ProfileAvatarEditorProps = {
   endpoint?: string;
   label?: string;
   showDetails?: boolean;
-  variant?: "hero" | "settings";
+  variant?: "hero" | "influencerHero" | "settings";
 };
 
 type ProfileImageResponse = {
@@ -22,11 +22,11 @@ type ProfileImageResponse = {
   };
 };
 
-function CameraIcon() {
+function CameraIcon({ className = "h-3.5 w-3.5" }: { className?: string }) {
   return (
     <svg
       aria-hidden="true"
-      className="h-3.5 w-3.5"
+      className={className}
       fill="none"
       stroke="currentColor"
       strokeLinecap="round"
@@ -54,7 +54,21 @@ export function ProfileAvatarEditor({
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const avatarSize =
-    variant === "settings" ? "h-20 w-20 text-xl" : "h-[52px] w-[52px] text-sm";
+    variant === "settings"
+      ? "h-[88px] w-[88px] text-2xl"
+      : variant === "influencerHero"
+        ? "h-[92px] w-[92px] text-2xl min-[390px]:h-[104px] min-[390px]:w-[104px] min-[390px]:text-3xl"
+        : "h-[60px] w-[60px] text-base";
+  const cameraSize =
+    variant === "influencerHero"
+      ? "h-9 w-9 min-[390px]:h-10 min-[390px]:w-10"
+      : "h-[30px] w-[30px]";
+  const cameraIconSize =
+    variant === "influencerHero" ? "h-4 w-4 min-[390px]:h-[18px] min-[390px]:w-[18px]" : undefined;
+  const statusSize =
+    variant === "influencerHero"
+      ? "h-5 w-5 border-[3px] min-[390px]:h-6 min-[390px]:w-6"
+      : "h-3.5 w-3.5 border-2";
 
   useEffect(() => {
     let isMounted = true;
@@ -115,7 +129,7 @@ export function ProfileAvatarEditor({
     <div className="flex shrink-0 items-center gap-2">
       <div className="relative">
         <div
-          className={`relative grid ${avatarSize} overflow-hidden rounded-full border border-[#2ED3FF]/45 bg-white/[0.14] place-items-center font-bold text-white`}
+          className={`relative grid ${avatarSize} overflow-hidden rounded-full border border-[#2ED3FF]/55 bg-white/[0.14] place-items-center font-bold text-white shadow-[0_18px_42px_rgba(0,0,0,0.28)] ring-4 ring-white/12`}
         >
           {image ? (
             <img
@@ -126,16 +140,16 @@ export function ProfileAvatarEditor({
           ) : (
             <span>{initials}</span>
           )}
-          <span className="absolute bottom-0 right-0 h-3.5 w-3.5 rounded-full border-2 border-[#081B5D] bg-[#32D583]" />
+          <span className={`absolute bottom-0 right-0 rounded-full border-[#081B5D] bg-[#32D583] shadow-[0_0_0_4px_rgba(50,213,131,0.14)] ${statusSize}`} />
         </div>
         <button
           aria-label="Edit profile picture"
-          className="absolute -bottom-1 -right-1 grid h-7 w-7 place-items-center rounded-full border border-white/40 bg-[#1D4DFF] text-white shadow-[0_10px_24px_rgba(0,0,0,0.34)] transition active:scale-95 disabled:cursor-wait disabled:opacity-70"
+          className={`absolute -bottom-1 -right-1 grid ${cameraSize} place-items-center rounded-full border border-white/50 bg-[#1D4DFF] text-white shadow-[0_10px_24px_rgba(0,0,0,0.34)] transition active:scale-95 disabled:cursor-wait disabled:opacity-70`}
           disabled={isLoading}
           onClick={() => fileInputRef.current?.click()}
           type="button"
         >
-          <CameraIcon />
+          <CameraIcon className={cameraIconSize} />
         </button>
         <input
           ref={fileInputRef}
@@ -164,7 +178,7 @@ export function ProfileAvatarEditor({
           ) : null}
         </div>
       ) : null}
-      {variant === "settings" ? (
+      {showDetails && variant === "settings" ? (
         <div className="min-w-0">
           <p className="truncate text-base font-semibold text-white">{displayName}</p>
           <p className="truncate text-sm text-white/70">{email}</p>

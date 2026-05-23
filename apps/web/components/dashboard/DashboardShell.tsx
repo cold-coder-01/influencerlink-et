@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { Sidebar } from "./Sidebar";
@@ -11,6 +13,110 @@ type DashboardShellProps = {
   role: "business_owner" | "influencer" | "admin";
   logout: () => Promise<void>;
 };
+
+type BottomNavItem = {
+  href: string;
+  icon: "coins" | "home" | "message" | "profile" | "rocket";
+  label: string;
+};
+
+const influencerBottomNavItems: BottomNavItem[] = [
+  { href: "/influencer/dashboard", icon: "home", label: "Home" },
+  { href: "/influencer/campaigns", icon: "rocket", label: "Campaigns" },
+  { href: "/influencer/messages", icon: "message", label: "Messages" },
+  { href: "/influencer/earnings", icon: "coins", label: "Earnings" },
+  { href: "/influencer/profile", icon: "profile", label: "Profile" },
+];
+
+const businessBottomNavItems: BottomNavItem[] = [
+  { href: "/dashboard", icon: "home", label: "Home" },
+  { href: "/campaigns", icon: "rocket", label: "Campaigns" },
+  { href: "/messages", icon: "message", label: "Messages" },
+  { href: "/payments", icon: "coins", label: "Payments" },
+  { href: "/settings", icon: "profile", label: "Settings" },
+];
+
+function BottomNavIcon({ name }: { name: BottomNavItem["icon"] }) {
+  const common = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    strokeWidth: 1.9,
+  };
+
+  return (
+    <svg aria-hidden="true" className="h-5 w-5" viewBox="0 0 24 24">
+      {name === "coins" ? (
+        <>
+          <ellipse {...common} cx="8" cy="7" rx="5" ry="3" />
+          <path {...common} d="M3 7v8c0 1.7 2.2 3 5 3s5-1.3 5-3V7" />
+          <path {...common} d="M13 10.2c.9-.7 2.2-1.2 3.7-1.2 2.4 0 4.3 1.1 4.3 2.5s-1.9 2.5-4.3 2.5c-1.4 0-2.7-.4-3.5-1" />
+        </>
+      ) : name === "message" ? (
+        <path {...common} d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4Z" />
+      ) : name === "profile" ? (
+        <>
+          <circle {...common} cx="12" cy="8" r="4" />
+          <path {...common} d="M4 21a8 8 0 0 1 16 0" />
+        </>
+      ) : name === "rocket" ? (
+        <>
+          <path {...common} d="M4.5 16.5c-1 1-1.5 2.5-1.5 4.5 2 0 3.5-.5 4.5-1.5" />
+          <path {...common} d="M9 15 7 13a14 14 0 0 1 8-9l4-1-1 4a14 14 0 0 1-9 8Z" />
+          <path {...common} d="M9 15v4h4l2-5M7 13H3V9l5-2" />
+        </>
+      ) : (
+        <>
+          <path {...common} d="m3 11 9-8 9 8" />
+          <path {...common} d="M5 10v10h14V10" />
+          <path {...common} d="M10 20v-6h4v6" />
+        </>
+      )}
+    </svg>
+  );
+}
+
+function MobileBottomNav({ role }: { role: DashboardShellProps["role"] }) {
+  const pathname = usePathname();
+  const items =
+    role === "influencer"
+      ? influencerBottomNavItems
+      : role === "admin"
+        ? []
+        : businessBottomNavItems;
+
+  if (!items.length) return null;
+
+  return (
+    <nav
+      aria-label="Mobile primary navigation"
+      className="fixed inset-x-3 bottom-3 z-30 rounded-[24px] border border-white/[0.20] bg-[#071E73]/88 px-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2 shadow-[0_22px_70px_rgba(0,0,0,0.32)] backdrop-blur-2xl lg:hidden"
+    >
+      <div className="grid grid-cols-5 gap-1">
+        {items.map((item) => {
+          const active =
+            pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+          return (
+            <Link
+              className={`grid min-h-[58px] place-items-center rounded-[18px] px-1 text-[11px] font-bold transition active:scale-95 ${
+                active
+                  ? "bg-white text-[#182CFF] shadow-[0_12px_28px_rgba(255,255,255,0.18)]"
+                  : "text-white/72 hover:bg-white/[0.10] hover:text-white"
+              }`}
+              href={item.href}
+              key={item.href}
+            >
+              <BottomNavIcon name={item.icon} />
+              <span className="mt-1 max-w-full truncate">{item.label}</span>
+            </Link>
+          );
+        })}
+      </div>
+    </nav>
+  );
+}
 
 export function DashboardShell({
   children,
@@ -76,6 +182,7 @@ export function DashboardShell({
           {children}
         </div>
       </div>
+      <MobileBottomNav role={role} />
     </main>
   );
 }
